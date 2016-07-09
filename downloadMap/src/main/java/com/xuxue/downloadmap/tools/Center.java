@@ -1,34 +1,41 @@
 package com.xuxue.downloadmap.tools;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
  * Created by HanHan on 2016/5/18.
  */
-public class Center {
+public class Center implements Serializable{
 
-    private final double lng;
+    private double lon;
 
-    private final double lat;
+    private double lat;
 
     private int x;
 
     private int y;
 
-    public Center(double lng,double lat){
-        this.lng=lng;
+    public Center(double lon,double lat){
+        this.lon=lon;
         this.lat=lat;
     }
 
     public static Center createByPixel(double x,double y){
-        double lng=Transform.pixelToLon(x,Parameters.ZOOM);
+        double lon=Transform.pixelToLon(x,Parameters.ZOOM);
         double lat=Transform.pixelToLat(y,Parameters.ZOOM);
-        return new Center(lng,lat);
+        return new Center(lon,lat);
     }
 
-    public double getLng(){
-        return this.lng;
+    public static Center createByStrings(String[] point)throws NumberFormatException{
+        double lon=Double.parseDouble(point[0]);
+        double lat=Double.parseDouble(point[1]);
+        return new Center(lon,lat);
+    }
+
+    public double getLon(){
+        return this.lon;
     }
 
     public double getLat(){
@@ -37,7 +44,7 @@ public class Center {
 
     public String toString(){
         DecimalFormat format=new DecimalFormat("0.00000000");
-        return "center="+format.format(lng)+","+format.format(lat);
+        return "center="+format.format(lat)+","+format.format(lon);
     }
 
     /**
@@ -46,7 +53,7 @@ public class Center {
      */
     public PixePoint toPixePoint(){
         double y=Transform.latToPixel(lat,Parameters.ZOOM);
-        double x=Transform.lonToPixel(lng,Parameters.ZOOM);
+        double x=Transform.lonToPixel(lon,Parameters.ZOOM);
         return new PixePoint(x,y);
     }
 
@@ -66,4 +73,11 @@ public class Center {
         this.y=y;
     }
 
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
 }

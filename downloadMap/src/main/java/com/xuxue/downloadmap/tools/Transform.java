@@ -10,6 +10,7 @@ public class Transform {
      *经度到像素x值的转换
      */
     public static double lonToPixel(double lon, int zoom){
+
         return (lon + 180) * (Parameters.WIDTH << zoom) / 360;
     }
 
@@ -23,9 +24,6 @@ public class Transform {
         return (128 << zoom) * (1 - y / (2 * Math.PI));
     }
 
-    public static double latLonDistanceToPixelDistance(double latLon,int zoom){
-        return 0;
-    }
 
 
     /**

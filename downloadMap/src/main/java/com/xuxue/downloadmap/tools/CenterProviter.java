@@ -27,17 +27,25 @@ public class CenterProviter {
 	public CenterProviter(Center center1,Center center2){
 	    this.center1=center1;
         this.center2=center2;
-        pixelx=Transform.lonToPixel(center1.getLng(),Parameters.ZOOM);
+        pixelx=Transform.lonToPixel(center1.getLon(),Parameters.ZOOM);
         pixely=Transform.latToPixel(center1.getLat(),Parameters.ZOOM);
         init();
 	}
+
+    public int getMaxX(){
+        return this.maxX;
+    }
+
+    public int getMaxY(){
+        return this.maxY;
+    }
 
     private void init(){
         PixePoint p1=center1.toPixePoint();
         PixePoint p2=center2.toPixePoint();
         Rectangle r=p1.calceRectangle(p2);
-        this.maxX=(int)Math.rint(r.getWidth()/Parameters.WIDTH);
-        this.maxY=(int)Math.rint(r.getHeight()/Parameters.HEIGHT);
+        this.maxX=(int)Math.ceil(r.getWidth()/Parameters.WIDTH);
+        this.maxY=(int)Math.ceil(r.getHeight()/Parameters.HEIGHT);
         System.out.println("maxX="+maxX+" maxY="+maxY);
        // System.exit(0);
     }

@@ -5,6 +5,6 @@ package com.xuxue.downloadmap.tools;
  */
 public class Parameters {
     public static final int WIDTH=256;
-    public static final int HEIGHT=316;
+    public static final int HEIGHT=256;
     public static final int ZOOM=18;
 }

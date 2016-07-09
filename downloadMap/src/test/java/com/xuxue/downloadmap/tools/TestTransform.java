@@ -10,9 +10,15 @@ public class TestTransform {
 
     @Test
     public void test(){
-        double lon=0;
-        double lat=0;
-        System.out.println(Transform.lonToPixel(lon,18));
+        double lat=29.791503;
+        double lon=118.364213;
+        double lonn=Transform.lonToPixel(lon,18);
+        double lonnn=Transform.pixelToLon(lonn,18);
+
+        double latt=Transform.latToPixel(lat,18);
+        double lattt=Transform.pixelToLat(latt,18);
+        System.out.println("long="+lonn/256);
+        System.out.println("latt="+latt/256);
 
     }
 
